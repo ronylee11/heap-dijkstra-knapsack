@@ -1,0 +1,9 @@
+# Ignore all
+*
+
+# except
+!.gitignore
+!*.cpp
+
+# Ignore special case files
+tempCodeRunnerFile.cpp
