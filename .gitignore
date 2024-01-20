@@ -4,6 +4,7 @@
 # except
 !.gitignore
 !*.cpp
+!*.md
 
 # Ignore special case files
 tempCodeRunnerFile.cpp
