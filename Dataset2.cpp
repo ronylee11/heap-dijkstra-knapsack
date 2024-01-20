@@ -124,7 +124,7 @@ vector<vector<int>> generateAdjacencyMatrix(
       int toIndex = route.to - 'A';
 
       // Set the corresponding cell in the adjacency matrix to 1
-      adjacencyMatrix[fromIndex][toIndex] = 1;
+      adjacencyMatrix[fromIndex][toIndex] = station.weight;
     }
   }
 
@@ -161,7 +161,7 @@ void printAdjacencyMatrix(vector<vector<int>> adjacencyMatrix) {
   }
   printf(" \n");
   for (int i = 0; i < adjacencyMatrix.size(); i++) {
-    printf("%2d [ ", i); // add row number
+    printf("%2d [ ", i + 1); // add row number
     for (const auto &cell : adjacencyMatrix[i]) {
       printf("%2d ", cell);
     }
