@@ -24,8 +24,7 @@ int calculateDistance(const Station &s1, const Station &s2) {
 }
 
 void detectSameStationAndRoute(Station &station1, Station &station2,
-                               vector<Station> &stations) // O(n^3)
-{
+                               vector<Station> &stations) { // O(n^3)
   bool routeExist = false;
   do {
     station2 = stations[rand() % 20];
@@ -33,13 +32,12 @@ void detectSameStationAndRoute(Station &station1, Station &station2,
     if (station1.name == station2.name) // detectSameStation
       continue;
 
-    for (const auto &route : station1.routes) // detectSameStationAndRoute
-    {
+    for (const auto &route : station1.routes) { // detectSameStationAndRoute
       if (route.to == station2.name)
         continue;
       routeExist = true;
     }
-  } while (routeExist = false);
+  } while (routeExist == false);
 }
 
 void updateStation(Station &station, vector<Station> &stations) {
@@ -52,8 +50,8 @@ void updateStation(Station &station, vector<Station> &stations) {
 }
 
 void generateRoute(Station &station1,
-                   vector<Station> &stations) // non-directed graph
-{                                             // generate one specific route
+                   vector<Station> &stations) { // non-directed graph
+                                                // generate one specific route
   Station station2 = stations[rand() % 20];
 
   // CASES
@@ -82,8 +80,7 @@ void generateRoute(Station &station1,
   updateStation(station2, stations);
 }
 
-void generateData(vector<Station> &stations) // points to stations variable
-{
+void generateData(vector<Station> &stations) { // points to stations variable
   srand(ID1 + ID2);
   // generate 20 stations without routes
   for (char stationName = 'A'; stationName <= 'T'; ++stationName) {
