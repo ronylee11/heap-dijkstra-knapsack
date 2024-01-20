@@ -176,11 +176,4 @@ int main() {
   vector<vector<int>> adjacencyMatrix = generateAdjacencyMatrix(stations);
   printArray(stations);
   printAdjacencyMatrix(adjacencyMatrix);
-
-  // printf("\nTESTING\n");
-  // cout << stations[0].routes[0].from << endl;
-  // for (const auto &route : stations[0].routes) {
-  // cout << "Route from Station " << route.from << " to Station " << route.to
-  //<< ", Distance: " << route.distance << endl;
-  //}
 }
