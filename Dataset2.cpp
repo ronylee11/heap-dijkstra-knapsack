@@ -28,7 +28,7 @@ void detectSameStationAndRoute(Station &station1, Station &station2,
 {
   bool routeExist = false;
   do {
-    Station station2 = stations[rand() % 20];
+    station2 = stations[rand() % 20];
 
     if (station1.name == station2.name) // detectSameStation
       continue;
@@ -54,12 +54,12 @@ void updateStation(Station &station, vector<Station> &stations) {
 void generateRoute(Station &station1,
                    vector<Station> &stations) // non-directed graph
 {                                             // generate one specific route
-  Station station2 = stations[rand() % 20];   // testing only
+  Station station2 = stations[rand() % 20];
 
-  // TODO
+  // CASES
   // 1. cannot route back to same station
   // 2. cannot route to same station twice
-  // 3. if A -> B, then B -> A ?? UNDONE
+  // 3. if A -> B, then B -> A
 
   // (1. same station)
   // (2. same route)
@@ -80,22 +80,14 @@ void generateRoute(Station &station1,
   route2.distance = calculateDistance(station2, station1);
   station2.routes.push_back(route2);
   updateStation(station2, stations);
-
-  // cout << "Printing the routes of Station " << station1.name << "..." <<
-  // endl; for (const auto &route : station1.routes)
-  // {
-  //     cout << "Route from Station " << route.from << " to Station " <<
-  //     route.to
-  //          << ", Distance: " << route.distance << endl;
-  // }
 }
 
 void generateData(vector<Station> &stations) // points to stations variable
 {
   srand(ID1 + ID2);
-  for (char stationName = 'A'; stationName <= 'T';
-       ++stationName) { // generate 20 stations without routes // A to T is 20
-                        // steps
+  // generate 20 stations without routes
+  for (char stationName = 'A'; stationName <= 'T'; ++stationName) {
+    // A to T is 20 steps
     Station station;
     station.name = stationName;
     station.x = rand() % 80 + 1;
@@ -112,14 +104,6 @@ void generateData(vector<Station> &stations) // points to stations variable
     while (station1.routes.size() < 3) {
       generateRoute(station1, stations);
     }
-
-    // cout << "Printing the routes of Station " << station1.name << "..." <<
-    // endl; for (const auto &route : station1.routes)
-    // {
-    //     cout << "Route from Station " << route.from << " to Station " <<
-    //     route.to
-    //          << ", Distance: " << route.distance << endl;
-    // }
   }
 }
 
@@ -188,7 +172,7 @@ void printAdjacencyMatrix(vector<vector<int>> adjacencyMatrix) {
 
 int main() {
   vector<Station> stations;
-  generateData(stations); // no routes??
+  generateData(stations);
   vector<vector<int>> adjacencyMatrix = generateAdjacencyMatrix(stations);
   printArray(stations);
   printAdjacencyMatrix(adjacencyMatrix);
