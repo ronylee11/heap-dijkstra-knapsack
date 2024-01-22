@@ -26,6 +26,14 @@ int calculateDistance(const Station &s1, const Station &s2)
     return sqrt(pow(s1.x - s2.x, 2) + pow(s1.y - s2.y, 2) + pow(s1.z - s2.z, 2));
 }
 
+void updateRoute(Station &fromStation, Station &toStation) {
+    Route route;
+    route.from = fromStation.name;
+    route.to = toStation.name;
+    route.distance = calculateDistance(fromStation, toStation);
+    fromStation.routes.push_back(route);
+}
+
 void generateRoute(int stationIndex1, vector<Station> &stations, int &totalGeneratedRoutes)
 {
     int stationIndex2 = rand() % 20;
@@ -52,19 +60,11 @@ void generateRoute(int stationIndex1, vector<Station> &stations, int &totalGener
 
     if (!routeExist)
     {
-        Route route;
-        route.from = station1.name;
-        route.to = station2.name;
-        route.distance = calculateDistance(station1, station2);
-        station1.routes.push_back(route);
+        updateRoute(station1, station2);
         stations[stationIndex1] = station1;
 
         // reverse
-        Route route2;
-        route2.from = station2.name;
-        route2.to = station1.name;
-        route2.distance = route.distance;
-        station2.routes.push_back(route2);
+        updateRoute(station2, station1);
         stations[stationIndex2] = station2;
         totalGeneratedRoutes++;
     }
