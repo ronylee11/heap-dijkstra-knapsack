@@ -1,6 +1,7 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -180,49 +181,44 @@ void generateData(vector<vector<Station>> &stations)
   }
 }
 
-vector<vector<int>> generateAdjacencyMatrix(const vector<vector<Station>> &stations)
+vector<vector<int>> generateAdjacencyMatrix(const vector<Station> &stations)
 { // weighted, and directed graph
   // Initialize the adjacency matrix with 0s
-  vector<vector<int>> adjacencyMatrix(20, vector<int>(20, 0));
+  vector<vector<int>> adjacencyMatrix(stations.size(), vector<int>(stations.size(), 0));
 
-  for (const auto &stationCol : stations)
+  for (Station station : stations)
   {
-    for (const auto &station : stationCol)
+    // For each route
+    for (const Route &route : station.routes)
     {
-      for (const Route &route : station.routes)
-      {
-        // Find the indices of the 'from' and 'to' stations
-        int fromIndex = route.from - 'A';
-        int toIndex = route.to - 'A';
+      // Find the indices of the 'from' and 'to' stations
+      int fromIndex = route.from - 'A';
+      int toIndex = route.to - 'A';
 
-        // generate route with weight
-        adjacencyMatrix[fromIndex][toIndex] = station.weight;
-      }
+      // generate route with weight
+      adjacencyMatrix[fromIndex][toIndex] = station.weight;
     }
   }
   return adjacencyMatrix;
 }
 
-void printArray(vector<vector<Station>> stations)
+void printArray(vector<Station> stations)
 {
-
   // print stations
-  for (const auto &stationCol : stations)
+  for (const auto &station : stations)
   {
-    for (const auto &station : stationCol)
-    {
-      cout << "Station " << station.name << " " << station.x << " " << station.y
-           << " " << station.z << " " << station.weight << " " << station.profit
-           << endl;
+    cout << "Station " << station.name << " " << station.x << " " << station.y
+         << " " << station.z << " " << station.weight << " " << station.profit
+         << endl;
 
-      // print routes
-      for (const Route &route : station.routes)
-      {
-        cout << route.from << " -> " << route.to
-             << ", Distance: " << route.distance << endl;
-      }
-      cout << endl;
+    // print routes
+    for (const Route &route : station.routes)
+    {
+      cout << route.from << " -> " << route.to
+           << ", Distance: " << route.distance << endl;
     }
+
+    cout << endl;
   }
 }
 
@@ -247,11 +243,25 @@ void printAdjacencyMatrix(vector<vector<int>> adjacencyMatrix)
   }
 }
 
+bool stationComparator(const Station &a, const Station &b)
+{
+  return a.name < b.name;
+}
+
 int main()
 {
-  vector<vector<Station>> stations(5, vector<Station>(4));
-  generateData(stations);
-  vector<vector<int>> adjacencyMatrix = generateAdjacencyMatrix(stations);
-  printArray(stations);
+  vector<vector<Station>> stations2D(5, vector<Station>(4));
+  generateData(stations2D);
+
+  // turn the 2D vector to 1D to rearrange the alphabets for neat printing
+  vector<Station> stations1D;
+  for (const auto &stationCol : stations2D)
+  {
+    stations1D.insert(stations1D.end(), stationCol.begin(), stationCol.end());
+  }
+  sort(stations1D.begin(), stations1D.end(), stationComparator);
+
+  vector<vector<int>> adjacencyMatrix = generateAdjacencyMatrix(stations1D);
+  printArray(stations1D);
   printAdjacencyMatrix(adjacencyMatrix);
 }
