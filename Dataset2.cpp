@@ -185,9 +185,9 @@ vector<vector<int>> generateAdjacencyMatrix(const vector<vector<Station>> &stati
   // Initialize the adjacency matrix with 0s
   vector<vector<int>> adjacencyMatrix(20, vector<int>(20, 0));
 
-  for (const auto &stationRow : stations)
+  for (const auto &stationCol : stations)
   {
-    for (const auto &station : stationRow)
+    for (const auto &station : stationCol)
     {
       for (const Route &route : station.routes)
       {
@@ -207,9 +207,9 @@ void printArray(vector<vector<Station>> stations)
 {
 
   // print stations
-  for (const auto &stationRow : stations)
+  for (const auto &stationCol : stations)
   {
-    for (const auto &station : stationRow)
+    for (const auto &station : stationCol)
     {
       cout << "Station " << station.name << " " << station.x << " " << station.y
            << " " << station.z << " " << station.weight << " " << station.profit
