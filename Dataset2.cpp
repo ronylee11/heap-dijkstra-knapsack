@@ -70,9 +70,15 @@ void generateData(vector<Station> &stations) {
   for (char stationName = 'A'; stationName <= 'T'; ++stationName) {
     Station station;
     station.name = stationName;
-    station.x = rand() % 80 + 1;
+    station.x = rand() % 80 + 1; // [10, 20, 30, 40, 50]
     station.y = rand() % 80 + 1;
     station.z = rand() % 80 + 1;
+
+    // Station A {x: 20, y: 40, z: 30}   A -> C
+    // Station B {x: 30, y: 50, z: 80}
+    // Station C {x: 25, y: 40, z: 40}   C -> A
+    // inorder to connect to other station, x or y or z has to be same
+
     station.weight = rand() % 20;
     station.profit = rand() % 50;
     stations.push_back(station);
@@ -95,6 +101,27 @@ void generateData(vector<Station> &stations) {
   }
 }
 
+vector<vector<int>> generateAdjacencyMatrix(
+    const vector<Station> &stations) { // weighted, and directed graph
+  // Initialize the adjacency matrix with 0s
+  vector<vector<int>> adjacencyMatrix(stations.size(),
+                                      vector<int>(stations.size(), 0));
+
+  for (Station station : stations) {
+    // For each route
+    for (const Route &route : station.routes) {
+      // Find the indices of the 'from' and 'to' stations
+      int fromIndex = route.from - 'A';
+      int toIndex = route.to - 'A';
+
+      // generate route with weight
+      adjacencyMatrix[fromIndex][toIndex] = station.weight;
+      //}
+    }
+  }
+  return adjacencyMatrix;
+}
+
 void printArray(vector<Station> stations) {
 
   // print stations
@@ -112,8 +139,27 @@ void printArray(vector<Station> stations) {
   }
 }
 
+void printAdjacencyMatrix(vector<vector<int>> adjacencyMatrix) {
+  //  add column number
+  printf("     ");
+  for (int x = 1; x <= adjacencyMatrix[0].size(); x++) {
+    printf("%2d ", x);
+  }
+  printf(" \n");
+  for (int i = 0; i < adjacencyMatrix.size(); i++) {
+    printf("%2d [ ", i + 1); // add row number
+    for (const auto &cell : adjacencyMatrix[i]) {
+      printf("%2d ", cell);
+    }
+    printf("]");
+    cout << endl;
+  }
+}
+
 int main() {
   vector<Station> stations;
   generateData(stations);
+  vector<vector<int>> adjacencyMatrix = generateAdjacencyMatrix(stations);
   printArray(stations);
+  printAdjacencyMatrix(adjacencyMatrix);
 }
