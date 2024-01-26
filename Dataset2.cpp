@@ -2,25 +2,12 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include "structs.h"
 
 using namespace std;
 
 const double ID1 = 1211306086;
 const double ID2 = 1211307001;
-
-struct Route
-{
-  char from, to;
-  int distance;
-};
-
-struct Station
-{
-  char name;
-  int x, y, z;
-  int weight, profit;
-  vector<Route> routes;
-};
 
 int calculateDistance(const Station &s1, const Station &s2)
 {
