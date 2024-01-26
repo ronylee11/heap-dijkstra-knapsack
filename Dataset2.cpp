@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include "structs.h"
+#include "dijkstra.cpp"
 #include "dynamicProgramming.cpp"
 
 using namespace std;
@@ -260,8 +261,12 @@ int main()
   cout << "> ";
   int option;
   cin >> option;
+  cout << endl;
 
-  if (option == 3) {
+  if (option == 1) {
+    dijkstra(adjacencyMatrix, 0);
+  }
+  else if (option == 3) {
       // Set capacity to 800kg
       int knapsackCapacity = 800;
 
