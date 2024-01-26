@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include "structs.h"
+#include "dynamicProgramming.cpp"
 
 using namespace std;
 
@@ -251,4 +252,22 @@ int main()
   vector<vector<int>> adjacencyMatrix = generateAdjacencyMatrix(stations1D);
   printArray(stations1D);
   printAdjacencyMatrix(adjacencyMatrix);
+
+  cout << "\nChoose an algorithm" << endl;
+  cout << "1. Shortest Paths" << endl;
+  cout << "2. Minimum Spanning Tree" << endl;
+  cout << "3. Dynamic Programming" << endl;
+  cout << "> ";
+  int option;
+  cin >> option;
+
+  if (option == 3) {
+      // Assume knapsack capacity as 50 (you can modify this)
+      int knapsackCapacity = 50;
+
+      // Call knapsack function
+      knapsack(stations1D, knapsackCapacity);
+  } else {
+      cout << "Invalid option, only numbers 1-3 are allowed!" << endl;
+  }
 }
