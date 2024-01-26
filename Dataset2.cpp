@@ -262,8 +262,8 @@ int main()
   cin >> option;
 
   if (option == 3) {
-      // Assume knapsack capacity as 50 (you can modify this)
-      int knapsackCapacity = 50;
+      // Set capacity to 800kg
+      int knapsackCapacity = 800;
 
       // Call knapsack function
       knapsack(stations1D, knapsackCapacity);
