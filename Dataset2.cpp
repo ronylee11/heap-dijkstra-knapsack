@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <chrono>
 #include "structs.h"
 #include "dijkstra.cpp"
 #include "kruskal.cpp"
@@ -289,7 +290,11 @@ int main()
       int knapsackCapacity = 800;
 
       // Call knapsack function
+      auto knapsackStart = chrono::system_clock::now();
       knapsack(knapsackCapacity, stations1D);
+      auto knapsackEnd = chrono::system_clock::now();
+      chrono::duration<double, milli> knapsackDuration = knapsackEnd - knapsackStart;
+      cout << "Knapsack duration: " << knapsackDuration.count() << "ms" << endl;
   } else {
       cout << "Invalid option, only numbers 1-3 are allowed!" << endl;
   }
