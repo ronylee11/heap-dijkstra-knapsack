@@ -143,8 +143,8 @@ void generateData(vector<vector<Station>> &stations)
       stations[i][j].x = rand() % 80 + 1;
       stations[i][j].y = rand() % 80 + 1;
       stations[i][j].z = rand() % 80 + 1;
-      stations[i][j].weight = rand() % 20;
-      stations[i][j].profit = rand() % 50;
+      stations[i][j].weight = rand() % 160;
+      stations[i][j].profit = rand() % 160;
     }
   }
 
@@ -232,15 +232,15 @@ void printAdjacencyMatrix(vector<vector<int>> adjacencyMatrix)
   printf("     ");
   for (int x = 1; x <= adjacencyMatrix[0].size(); x++)
   {
-    printf("%2d ", x);
+    printf("%3d ", x);
   }
   printf(" \n");
   for (int i = 0; i < adjacencyMatrix.size(); i++)
   {
-    printf("%2d [ ", i + 1); // add row number
+    printf("%3d [ ", i + 1); // add row number
     for (const auto &cell : adjacencyMatrix[i])
     {
-      printf("%2d ", cell);
+      printf("%3d ", cell);
     }
     printf("]");
     cout << endl;
@@ -289,7 +289,7 @@ int main()
       int knapsackCapacity = 800;
 
       // Call knapsack function
-      knapsack(stations1D, knapsackCapacity);
+      knapsack(knapsackCapacity, stations1D);
   } else {
       cout << "Invalid option, only numbers 1-3 are allowed!" << endl;
   }
