@@ -7,7 +7,7 @@ using namespace std;
 
 struct Route {
   char from, to;
-  int distance, weight;
+  int distance;
 };
 
 struct Station {

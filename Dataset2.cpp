@@ -41,7 +41,6 @@ void updateRoute(Station &fromStation, Station &toStation)
   route.from = fromStation.name;
   route.to = toStation.name;
   route.distance = calculateDistance(fromStation, toStation);
-  route.weight = fromStation.weight;
   fromStation.routes.push_back(route);
 }
 
