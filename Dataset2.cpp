@@ -174,7 +174,7 @@ void generateData(vector<vector<Station>> &stations)
 }
 
 vector<vector<int>> generateAdjacencyMatrix(const vector<Station> &stations)
-{ // weighted, and directed graph
+{ // weighted, and (un?)directed graph
   // Initialize the adjacency matrix with 0s
   vector<vector<int>> adjacencyMatrix(stations.size(), vector<int>(stations.size(), 0));
 
@@ -188,7 +188,7 @@ vector<vector<int>> generateAdjacencyMatrix(const vector<Station> &stations)
       int toIndex = route.to - 'A';
 
       // generate route with weight
-      adjacencyMatrix[fromIndex][toIndex] = station.weight;
+      adjacencyMatrix[fromIndex][toIndex] = route.distance;
     }
   }
   return adjacencyMatrix;
@@ -196,11 +196,8 @@ vector<vector<int>> generateAdjacencyMatrix(const vector<Station> &stations)
 
 void printToGraph(vector<Station> stations) {
   for (const auto &station : stations) {
-      cout << station.name << endl;
-  }
-  for (const auto &station : stations) {
       for (const Route &route : station.routes) {
-          cout << route.from << " " << route.to << endl;
+          cout << route.from << " " << route.to << " " << endl;
       }
       cout << endl;
   }

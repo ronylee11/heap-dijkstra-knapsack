@@ -6,7 +6,7 @@
 using namespace std;
 
 bool routeComparator(const Route &a, const Route &b) {
-    return a.weight < b.weight;
+    return a.distance < b.distance;
 }
 
 char findRoot(char parent[], char vertex) {
@@ -47,7 +47,7 @@ void kruskal(const vector<Station> &stations)
         if(fromStation != toStation) {
             mst.push_back(route);
             parent[fromStation - 'A'] = toStation;
-            totalWeight += route.weight;
+            totalWeight += route.distance;
         }
     }
 
@@ -55,7 +55,7 @@ void kruskal(const vector<Station> &stations)
     cout << "Minimum spanning tree:" << endl;
     for (const auto &route : mst)
     {
-        cout << route.from << " - " << route.to << ", weight: " << route.weight << ", distance: " << route.distance << endl;
+        cout << route.from << " - " << route.to << ", distance: " << route.distance << endl;
     }
 
     cout << "\nTotal weight of MST: " << totalWeight << endl;
