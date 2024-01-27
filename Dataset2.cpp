@@ -227,14 +227,14 @@ void printAdjacencyMatrix(vector<vector<int>> adjacencyMatrix)
 {
   //  add column number
   printf("     ");
-  for (int x = 1; x <= adjacencyMatrix[0].size(); x++)
+  for (int x = 0; x < adjacencyMatrix[0].size(); x++)
   {
-    printf("%3d ", x);
+    printf("%3c ", (x + 'A'));
   }
   printf(" \n");
   for (int i = 0; i < adjacencyMatrix.size(); i++)
   {
-    printf("%3d [ ", i + 1); // add row number
+    printf("%3c [ ", (i + 'A')); // add row number
     for (const auto &cell : adjacencyMatrix[i])
     {
       printf("%3d ", cell);
