@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "structs.h"
 #include "dijkstra.cpp"
+#include "kruskal.cpp"
 #include "dynamicProgramming.cpp"
 
 using namespace std;
@@ -39,6 +40,7 @@ void updateRoute(Station &fromStation, Station &toStation)
   route.from = fromStation.name;
   route.to = toStation.name;
   route.distance = calculateDistance(fromStation, toStation);
+  route.weight = fromStation.weight;
   fromStation.routes.push_back(route);
 }
 
@@ -265,6 +267,9 @@ int main()
 
   if (option == 1) {
     dijkstra(adjacencyMatrix, 0);
+  }
+  else if (option == 2) {
+    kruskal(stations1D);
   }
   else if (option == 3) {
       // Set capacity to 800kg
