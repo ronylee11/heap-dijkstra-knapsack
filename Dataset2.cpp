@@ -193,6 +193,18 @@ vector<vector<int>> generateAdjacencyMatrix(const vector<Station> &stations)
   return adjacencyMatrix;
 }
 
+void printToGraph(vector<Station> stations) {
+  for (const auto &station : stations) {
+      cout << station.name << endl;
+  }
+  for (const auto &station : stations) {
+      for (const Route &route : station.routes) {
+          cout << route.from << " " << route.to << endl;
+      }
+      cout << endl;
+  }
+}
+
 void printArray(vector<Station> stations)
 {
   // print stations
@@ -211,6 +223,7 @@ void printArray(vector<Station> stations)
 
     cout << endl;
   }
+  printToGraph(stations);
 }
 
 void printAdjacencyMatrix(vector<vector<int>> adjacencyMatrix)
