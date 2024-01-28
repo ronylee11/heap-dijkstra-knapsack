@@ -220,7 +220,7 @@ void printArray(vector<Station> stations)
 
     cout << endl;
   }
-  printToGraph(stations);
+  //printToGraph(stations);
 }
 
 void printAdjacencyMatrix(vector<vector<int>> adjacencyMatrix)
