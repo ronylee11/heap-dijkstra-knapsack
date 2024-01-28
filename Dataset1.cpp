@@ -8,7 +8,17 @@ using namespace std;
 
 const int ID = 1211311027;
 
-// Print dataset first ten value and last ten value
+/* Print dataset(whole)
+void printArray(vector<int> dataset)
+{
+    for (int i : dataset)
+    {
+        printf("%d ", i);
+    }
+}
+*/
+
+// Print dataset first 50 value and last 50 value
 void printArray(vector<int> dataset)
 {
     int displayCount = 50;
